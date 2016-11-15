@@ -13,16 +13,22 @@ def register(id):
     create_osf_project()
 
 
-def create_osf_project(id):
+def create_osf_project(id, description=None):
+
+    if not description:
+        description = "Experiment preregistered by Dallinger."
+
     requests.post(
         "{}/nodes/".format(root),
         data={
             "type": "nodes",
             "category": "project",
-            "title": "hello",
-            "description": "",
+            "title": id,
+            "description": description,
         },
         headers={
             "Authorization": "Bearer {}".format(personal_access_token)
         }
     )
+
+create_osf_project("2423-234-234-234-23")
