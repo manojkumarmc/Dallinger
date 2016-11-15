@@ -28,6 +28,7 @@ from dallinger.heroku import (
     app_name,
     scale_up_dynos
 )
+from dallinger import preregistration
 from dallinger.version import __version__
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
@@ -329,6 +330,10 @@ def deploy_sandbox_shared_setup(verbose=True, app=None, web_procs=1):
         out = open(os.devnull, 'w')
 
     (id, tmp) = setup_experiment(debug=False, verbose=verbose, app=app)
+
+    # Preregister the experiment on OSF
+    log("Preregistering experiment on OSF.")
+    preregistration.register(id, snapshot=None)
 
     # Log in to Heroku if we aren't already.
     log("Making sure that you are logged in to Heroku.")

@@ -8,7 +8,7 @@ personal_access_token = os.environ.get('OSF_ACCESS_TOKEN')
 root = "https://api.osf.io/v2"
 
 
-def register(id):
+def register(id, snapshot):
     """Preregister the experiment."""
     create_osf_project()
 
