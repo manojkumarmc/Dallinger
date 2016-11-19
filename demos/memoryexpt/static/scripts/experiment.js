@@ -162,8 +162,12 @@ get_transmissions = function (my_node_id) {
             display_info(transmissions[i].info_id);
 
             }
-            get_transmissions(my_node_id);
+            //get_transmissions(my_node_id);
+            setTimeout(function(){
+                get_transmissions(my_node_id);
+            }, 200);
            },
+
         error: function (err) {
             console.log(err);
             errorResponse = JSON.parse(err.response);
@@ -292,7 +296,7 @@ waitForQuorum = function () {
             } else {
                 setTimeout(function(){
                     waitForQuorum();
-                }, 1000);
+                }, 200);
             }
         }
     });
