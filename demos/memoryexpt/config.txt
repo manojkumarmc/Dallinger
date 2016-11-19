@@ -2,7 +2,7 @@
 mode = sandbox
 auto_recruit = true
 network = FullyConnected
-n = 2
+n = 5
 
 [HIT Configuration]
 title = Coordination game
