@@ -1,0 +1,29 @@
+id,creation_time,property1,property2,property3,property4,property5,failed,time_of_death,type,origin_id,network_id,contents
+1,2016-11-20 22:42:05.550222,,,,,,f,,info,1,1,"[""Window"", ""Flood"", ""Uncle"", ""Grapefruit"", ""Drum"", ""General"", ""President"", ""Saw"", ""Assault"", ""Gold"", ""Cotton"", ""Vanilla"", ""Baseball"", ""Electricity"", ""Bishop"", ""Coffee"", ""Blue"", ""Apartment"", ""Mile"", ""Geology"", ""Magazine"", ""Shirt"", ""Noun"", ""Rap"", ""Church"", ""Eagle"", ""Water"", ""Oxygen"", ""Dollar"", ""Chair"", ""Dog"", ""Cave"", ""Whiskey"", ""Car"", ""Steel"", ""Knife"", ""Hour"", ""Cook"", ""Diamond"", ""Leg""]"
+2,2016-11-20 22:42:06.085196,,,,,,f,,info,1,1,"[""Assault"", ""Vanilla"", ""Leg"", ""Saw"", ""Noun"", ""Magazine"", ""Water"", ""Electricity"", ""Gold"", ""Baseball"", ""Diamond"", ""Uncle"", ""Flood"", ""Grapefruit"", ""Steel"", ""Coffee"", ""Church"", ""Oxygen"", ""Shirt"", ""Cook"", ""Window"", ""Geology"", ""Knife"", ""Rap"", ""Blue"", ""Cave"", ""Whiskey"", ""Dog"", ""Drum"", ""General"", ""Bishop"", ""Dollar"", ""Chair"", ""President"", ""Eagle"", ""Hour"", ""Mile"", ""Apartment"", ""Cotton"", ""Car""]"
+3,2016-11-20 22:42:06.188578,,,,,,f,,info,1,1,"[""Flood"", ""Hour"", ""Drum"", ""Water"", ""Leg"", ""Dog"", ""Cotton"", ""Whiskey"", ""Apartment"", ""Dollar"", ""Gold"", ""Blue"", ""Bishop"", ""Magazine"", ""Grapefruit"", ""Church"", ""Assault"", ""Electricity"", ""Cave"", ""Uncle"", ""Oxygen"", ""Car"", ""Vanilla"", ""Diamond"", ""Shirt"", ""Knife"", ""Chair"", ""Baseball"", ""Window"", ""Saw"", ""Mile"", ""Geology"", ""Steel"", ""Cook"", ""Eagle"", ""Coffee"", ""General"", ""Noun"", ""Rap"", ""President""]"
+4,2016-11-20 22:44:12.739796,,,,,,f,,info,3,1,coffee
+5,2016-11-20 22:44:16.513847,,,,,,f,,info,3,1,church
+6,2016-11-20 22:44:17.841325,,,,,,f,,info,3,1,eagle
+7,2016-11-20 22:44:19.560131,,,,,,f,,info,3,1,steel
+8,2016-11-20 22:44:29.877295,,,,,,f,,info,3,1,baseball
+9,2016-11-20 22:44:31.187844,,,,,,f,,info,4,1,noun
+10,2016-11-20 22:44:31.903549,,,,,,f,,info,2,1,window
+11,2016-11-20 22:44:34.118179,,,,,,f,,info,3,1,uncle
+12,2016-11-20 22:44:34.487764,,,,,,f,,info,2,1,flood
+13,2016-11-20 22:44:35.931064,,,,,,f,,info,3,1,leg
+14,2016-11-20 22:44:36.796028,,,,,,f,,info,2,1,gold
+15,2016-11-20 22:44:37.524145,,,,,,f,,info,3,1,saw
+16,2016-11-20 22:44:38.219239,,,,,,f,,info,4,1,floor
+17,2016-11-20 22:44:38.972484,,,,,,f,,info,2,1,diamond
+18,2016-11-20 22:44:42.309284,,,,,,f,,info,2,1,vanilla
+19,2016-11-20 22:44:47.690222,,,,,,f,,info,2,1,president
+20,2016-11-20 22:44:49.890731,,,,,,f,,info,2,1,general
+21,2016-11-20 22:44:52.322792,,,,,,f,,info,2,1,bishop
+22,2016-11-20 22:45:00.839333,,,,,,f,,info,3,1,knife
+23,2016-11-20 22:45:01.921719,,,,,,f,,info,3,1,dog
+24,2016-11-20 22:45:03.088953,,,,,,f,,info,3,1,drum
+25,2016-11-20 22:45:15.64409,,,,,,f,,info,3,1,blue
+26,2016-11-20 22:45:17.243719,,,,,,f,,info,3,1,rap
+27,2016-11-20 22:45:19.075535,,,,,,f,,info,3,1,cave
+28,2016-11-20 22:45:23.575316,,,,,,f,,info,3,1,whiskey

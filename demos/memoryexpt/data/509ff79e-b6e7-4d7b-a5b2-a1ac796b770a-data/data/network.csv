@@ -1,0 +1,4 @@
+id,creation_time,property1,property2,property3,property4,property5,failed,time_of_death,type,max_size,full,role
+3,2016-11-22 19:41:43.26398,,,,,,f,,fully-connected,2,t,experiment
+1,2016-11-22 19:41:43.255098,,,,,,f,,fully-connected,2,t,experiment
+2,2016-11-22 19:41:43.257343,,,,,,f,,fully-connected,2,t,experiment

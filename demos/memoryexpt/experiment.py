@@ -11,11 +11,15 @@ class CoordinationChatroom(dlgr.experiments.Experiment):
     def __init__(self, session):
         """Initialize the experiment."""
         super(CoordinationChatroom, self).__init__(session)
-        self.experiment_repeats = 1
+        self.experiment_repeats = 3
         self.num_participants = dlgr.config.experiment_configuration.n
-        self.initial_recruitment_size = self.num_participants
+        self.initial_recruitment_size = self.experiment_repeats #self.num_participants*2 #recruit more people than are needed for expt
         self.quorum = self.num_participants
         self.setup()
+
+    def recruit(self):
+        """Recruit one participant at a time until all networks are full."""
+        pass
 
     def setup(self):
         """Setup the networks.
@@ -68,7 +72,9 @@ class FreeRecallListSource(Source):
         transmit() -> _what() -> create_information() -> _contents().
         """
 
-        wordlist = "40words.md" #random.choice(wordlists)
+        wordlist = "60words.md" #random.choice(wordlists)
         with open("static/stimuli/{}".format(wordlist), "r") as f:
             wordlist =  f.read().splitlines()
-            return json.dumps(random.sample(wordlist,5))
+            return json.dumps(random.sample(wordlist,40))
+            #random.shuffle(wordlist)
+            #return json.dumps(wordlist)
