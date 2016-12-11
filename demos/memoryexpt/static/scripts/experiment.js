@@ -56,7 +56,6 @@ $(document).ready(function() {
 
     // Submit the questionnaire.
     $("#submit-questionnaire").click(function() {
-        console.log("hello");
         submitResponses();
         submitAssignment();
     });
@@ -198,13 +197,13 @@ display_info = function(info_id) {
 };
 
 send_message = function() {
-    $("#send-message").addClass("disabled");
-    $("#send-message").html("Sending...");
+    //$("#send-message").addClass("disabled");
+    //$("#send-message").html("Sending...");
 
     response = $("#reproduction").val(); //typing box
 
-    // let people submit only if word doesn't have a space
-    if (response.indexOf(' ') >= 0) {
+    // let people submit only if word doesn't have a space, also must submit words at least 2 characters
+    if (response.indexOf(' ') >= 0 && response.len() > 1) {
       $("#send-message").removeClass("disabled");
       $("#send-message").html("Send");
       return;
