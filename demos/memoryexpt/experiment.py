@@ -72,6 +72,12 @@ class FreeRecallListSource(Source):
         transmit() -> _what() -> create_information() -> _contents().
         """
 
+        # load in the wordlists
+        # shuffle the wordlists
+        # shuffle order of wordlists
+        # add the wordlists together
+
+
         wordlist = "60words.md" #random.choice(wordlists)
         with open("static/stimuli/{}".format(wordlist), "r") as f:
             wordlist =  f.read().splitlines()
