@@ -75,6 +75,6 @@ class FreeRecallListSource(Source):
         wordlist = "60words.md" #random.choice(wordlists)
         with open("static/stimuli/{}".format(wordlist), "r") as f:
             wordlist =  f.read().splitlines()
-            return json.dumps(random.sample(wordlist,40))
+            return json.dumps(random.sample(wordlist,60))
             #random.shuffle(wordlist)
             #return json.dumps(wordlist)

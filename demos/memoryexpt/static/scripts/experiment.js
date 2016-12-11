@@ -202,22 +202,27 @@ send_message = function() {
 
     response = $("#reproduction").val(); //typing box
 
-    // let people submit only if word doesn't have a space, also must submit words at least 2 characters
-    if (response.indexOf(' ') >= 0 && response.len() > 1) {
-      $("#send-message").removeClass("disabled");
-      $("#send-message").html("Send");
+      // don't let people submit an empty response
+      if (response.length == 0){
       return;
-    };
+      };
 
-    // will not let you add a word that is non-unique
-    if (uniqueWords.indexOf(response.toLowerCase())=== -1){
-      uniqueWords.push(response.toLowerCase());
-      $("#reply").append("<p style='color: #1693A5;'>" + response.toLowerCase() + "</p>");
-    } else {
-      $("#send-message").removeClass("disabled");
-      $("#send-message").html("Send");
-      return;
-    }
+      // let people submit only if word doesn't have a space
+      if (response.indexOf(' ') >= 0) {
+        $("#send-message").removeClass("disabled");
+        $("#send-message").html("Send");
+        return;
+      };
+
+      // will not let you add a word that is non-unique
+      if (uniqueWords.indexOf(response.toLowerCase())=== -1){
+        uniqueWords.push(response.toLowerCase());
+        $("#reply").append("<p style='color: #1693A5;'>" + response.toLowerCase() + "</p>");
+      } else {
+        $("#send-message").removeClass("disabled");
+        $("#send-message").html("Send");
+        return;
+      }
 
     $("#reproduction").val("");
     $("#reproduction").focus();
