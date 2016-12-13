@@ -24,10 +24,13 @@ Vagrant.configure("2") do |config|
     sudo service postgresql reload
     
     sudo apt-get install -y enchant
-    sudo pip install pyenchant
+    sudo pip install virtualenv
+    virtualenv --no-site-packages ~/venv
+    source ~/venv/bin/activate
+    pip install pyenchant
     cd /vagrant
-    sudo pip install -r dev-requirements.txt
-    sudo python setup.py develop
+    pip install -r dev-requirements.txt
+    python setup.py develop
 
     dallinger setup
     
