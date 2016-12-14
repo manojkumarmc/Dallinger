@@ -235,7 +235,7 @@ class Experiment(object):
     def log(self, text, key="?????", force=False):
         """Print a string to the logs."""
         if force or self.verbose:
-            print ">>>> {} {}".format(key, text)
+            print(">>>> {} {}".format(key, text))
             sys.stdout.flush()
 
     def log_summary(self):
@@ -309,7 +309,8 @@ class Experiment(object):
     def data_check_failed(self, participant):
         """What to do if a participant fails the data check.
 
-        Runs when `participant` has failed :func:`~dallinger.experiments.Experiment.data_check`. By default calls
+        Runs when `participant` has failed
+        :func:`~dallinger.experiments.Experiment.data_check`. By default calls
         :func:`~dallinger.experiments.Experiment.fail_participant`.
 
         """
