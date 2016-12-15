@@ -6,6 +6,8 @@ from boto.mturk.connection import MTurkConnection
 from psiturk.models import Participant
 from psiturk.psiturk_config import PsiturkConfig
 
+from dallinger.db import session
+
 
 class Recruiter(object):
     """The base recruiter."""
@@ -77,6 +79,11 @@ class PsiTurkRecruiter(Recruiter):
 
     def __init__(self):
         """Set up the connection to MTurk and psiTurk web services."""
+
+        # commit to the db so if anything goes wrong the rest of the
+        # request is safe
+        session.commit()
+
         # load the configuration options
         self.config = PsiturkConfig()
         self.config.load_config()
