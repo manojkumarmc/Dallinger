@@ -1,6 +1,7 @@
 """Recruiters manage the flow of participants to the experiment."""
 
 import os
+import traceback
 
 from boto.mturk.connection import MTurkConnection
 from psiturk.models import Participant
@@ -189,14 +190,22 @@ class PsiTurkRecruiter(Recruiter):
             expiration_increment = self.config.get('HIT Configuration',
                                                    'duration')
 
-            self.mtc.extend_hit(
-                hit_id,
-                expiration_increment=int(
-                    float(expiration_increment or 0) * 3600))
+            try:
+                self.mtc.extend_hit(
+                    hit_id,
+                    expiration_increment=int(
+                        float(expiration_increment or 0) * 3600))
+            except:
+                print "Error: failed to extend time until expiration of HIT"
+                traceback.print_exc()
 
-            self.mtc.extend_hit(
-                hit_id,
-                assignments_increment=int(n or 0))
+            try:
+                self.mtc.extend_hit(
+                    hit_id,
+                    assignments_increment=int(n or 0))
+            except:
+                print "Error: failed to add {} assignments to HIT".format(n)
+                traceback.print_exc()
 
         else:
             print(">>>> auto_recruit set to {}: recruitment suppressed"
@@ -211,7 +220,11 @@ class PsiTurkRecruiter(Recruiter):
             self.aws_secret_access_key,
             self.config.getboolean(
                 'Shell Parameters', 'launch_in_sandbox_mode'))
-        return self.amt_services.approve_worker(assignment_id)
+        try:
+            return self.amt_services.approve_worker(assignment_id)
+        except:
+            print "Error: failed to approve assignment {}".format(assignment_id)
+            traceback.print_exc()
 
     def reward_bonus(self, assignment_id, amount, reason):
         """Reward the Turker with a bonus."""
@@ -222,7 +235,11 @@ class PsiTurkRecruiter(Recruiter):
             self.aws_secret_access_key,
             self.config.getboolean(
                 'Shell Parameters', 'launch_in_sandbox_mode'))
-        return self.amt_services.bonus_worker(assignment_id, amount, reason)
+        try:
+            return self.amt_services.bonus_worker(assignment_id, amount, reason)
+        except:
+            print "Error: failed to pay assignment {} bonus of {}".format(assignment_id, amount)
+            traceback.print_exc()
 
     def close_recruitment(self):
         """Close recruitment."""
