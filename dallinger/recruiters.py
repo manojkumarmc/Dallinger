@@ -186,10 +186,6 @@ class PsiTurkRecruiter(Recruiter):
 
             self.mtc = MTurkConnection(**mturkparams)
 
-            self.mtc.extend_hit(
-                hit_id,
-                assignments_increment=int(n or 0))
-
             expiration_increment = self.config.get('HIT Configuration',
                                                    'duration')
 
@@ -197,6 +193,11 @@ class PsiTurkRecruiter(Recruiter):
                 hit_id,
                 expiration_increment=int(
                     float(expiration_increment or 0) * 3600))
+
+            self.mtc.extend_hit(
+                hit_id,
+                assignments_increment=int(n or 0))
+
         else:
             print(">>>> auto_recruit set to {}: recruitment suppressed"
                   .format(auto_recruit))
