@@ -168,10 +168,6 @@ def setup_experiment(debug=True, verbose=False, app=None):
         os.path.join(dst, "dallinger_experiment.py"))
 
     # Copy files into this experiment package.
-    src = os.path.join(
-        os.path.dirname(os.path.realpath(__file__)),
-        "custom.py")
-    shutil.copy(src, os.path.join(dst, "custom.py"))
 
     heroku_files = [
         "Procfile",
