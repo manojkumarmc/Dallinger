@@ -49,6 +49,10 @@ class TestExperimentServer(FlaskAppTest):
         })
         assert 'Psychology Experiment' in resp.data
 
+    def test_ad_missing_params(self):
+        resp = self.app.get('/ad')
+        assert resp.status_code == 500
+
     def test_consent(self):
         resp = self.app.get('/consent', query_string={
             'hit_id': 'debug',
