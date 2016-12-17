@@ -308,9 +308,12 @@ def debug(verbose):
         host = config.get("Server Parameters", "host")
         port = config.get("Server Parameters", "port")
 
-        subprocess.check_call(
-            'curl --data "" http://{}:{}/launch'.format(host, port),
-            shell=True)
+        subprocess.check_call([
+            "curl",
+            "--data"
+            '""',
+            "http://{}:{}/launch".format(host, port),
+        ])
 
         log("Here's the psiTurk shell...")
         p.interact()
@@ -341,11 +344,13 @@ def deploy_sandbox_shared_setup(verbose=True, app=None, web_procs=1):
     os.chdir(tmp)
 
     # Commit Heroku-specific files to tmp folder's git repo.
-    cmds = ["git init",
-            "git add --all",
-            'git commit -m "Experiment ' + id + '"']
+    cmds = [
+        ["git", "init"],
+        ["git", "add", "--all"],
+        ["git", "commit", "-m", '"Experiment {}"'.format(id)]
+    ]
     for cmd in cmds:
-        subprocess.check_call(cmd, stdout=out, shell=True)
+        subprocess.check_call(cmd, stdout=out)
         time.sleep(0.5)
 
     # Load psiTurk configuration.
@@ -354,11 +359,13 @@ def deploy_sandbox_shared_setup(verbose=True, app=None, web_procs=1):
 
     # Initialize the app on Heroku.
     log("Initializing app on Heroku...")
-    subprocess.check_call(
-        "heroku apps:create " + app_name(id) +
-        " --buildpack https://github.com/thenovices/heroku-buildpack-scipy",
-        stdout=out,
-        shell=True)
+    subprocess.check_call([
+        "heroku",
+        "apps:create",
+        app_name(id),
+        "--buildpack",
+        "https://github.com/thenovices/heroku-buildpack-scipy"
+    ], stdout=out)
 
     # Transfer application to the correct team if necessary.
     try:
@@ -438,10 +445,13 @@ def deploy_sandbox_shared_setup(verbose=True, app=None, web_procs=1):
     log("Waiting for Redis...")
     ready = False
     while not ready:
-        redis_URL = subprocess.check_output(
-            "heroku config:get REDIS_URL --app {}".format(app_name(id)),
-            shell=True
-        )
+        redis_URL = subprocess.check_output([
+            "heroku",
+            "config:get",
+            "REDIS_URL",
+            "--app",
+            app_name(id),
+        ])
         r = redis.from_url(redis_URL)
         try:
             r.set("foo", "bar")
@@ -457,21 +467,36 @@ def deploy_sandbox_shared_setup(verbose=True, app=None, web_procs=1):
 
     # Set the database URL in the config file to the newly generated one.
     log("Saving the URL of the postgres database...")
-    db_url = subprocess.check_output(
-        "heroku config:get DATABASE_URL --app " + app_name(id), shell=True)
+    db_url = subprocess.check_output([
+        "heroku",
+        "config:get",
+        "DATABASE_URL",
+        "--app",
+        app_name(id)
+    ])
     config.set("Database Parameters", "database_url", db_url.rstrip())
-    subprocess.check_call("git add config.txt", stdout=out, shell=True),
+    subprocess.check_call([
+        "git",
+        "add",
+        "config.txt"
+    ], stdout=out),
     time.sleep(0.25)
-    subprocess.check_call(
-        'git commit -m "Save URLs for database and notifications"',
-        stdout=out,
-        shell=True)
+    subprocess.check_call([
+        "git",
+        "commit",
+        "-m",
+        '"Save URLs for database and notifications"'
+    ], stdout=out)
     time.sleep(0.25)
 
     # Launch the Heroku app.
     log("Pushing code to Heroku...")
-    subprocess.check_call(
-        "git push heroku HEAD:master", stdout=out, stderr=out, shell=True)
+    subprocess.check_call([
+        "git",
+        "push",
+        "heroku",
+        "HEAD:master"
+    ], stdout=out, stderr=out)
 
     log("Scaling up the dynos...")
     scale_up_dynos(app_name(id))
@@ -480,9 +505,12 @@ def deploy_sandbox_shared_setup(verbose=True, app=None, web_procs=1):
 
     # Launch the experiment.
     log("Launching the experiment on MTurk...")
-    subprocess.check_call(
-        'curl --data "" http://{}.herokuapp.com/launch'.format(app_name(id)),
-        shell=True)
+    subprocess.check_call([
+        "curl",
+        "--data",
+        '""',
+        "http://{}.herokuapp.com/launch".format(app_name(id))
+    ])
 
     time.sleep(8)
 
@@ -751,18 +779,25 @@ def awaken(app, databaseurl):
     key = bucket.lookup('database.dump')
     url = key.generate_url(expires_in=300)
 
-    cmd = "heroku pg:backups restore"
-    subprocess.check_call(
-        "{} '{}' DATABASE_URL --app {} --confirm {}".format(
-            cmd,
-            url,
-            app_name(id),
-            app_name(id)),
-        shell=True)
+    subprocess.check_call([
+        "heroku",
+        "pg:backups",
+        "restore",
+        "'{}'".format(url),
+        "DATABASE_URL",
+        "--app",
+        app_name(id),
+        "--confirm",
+        app_name(id)
+    ])
 
-    subprocess.check_call(
-        "heroku addons:create heroku-redis:premium-0 --app {}".format(app_name(id)),
-        shell=True)
+    subprocess.check_call([
+        "heroku",
+        "addons:create",
+        "heroku-redis:premium-0",
+        "--app",
+        app_name(id),
+    ])
 
     # Scale up the dynos.
     log("Scaling up the dynos...")
@@ -874,10 +909,13 @@ def logs(app):
     if app is None:
         raise TypeError("Select an experiment using the --app flag.")
     else:
-        subprocess.check_call(
-            "heroku addons:open papertrail --app " + app_name(app),
-            shell=True)
-
+        subprocess.check_call([
+            "heroku",
+            "addons:open",
+            "papertrail",
+            "--app",
+            app_name(app)
+        ])
 
 @dallinger.command()
 def verify():
