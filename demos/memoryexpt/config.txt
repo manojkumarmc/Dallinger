@@ -2,13 +2,13 @@
 mode = deploy
 auto_recruit = true
 network = FullyConnected
-n = 1
+n = 2
 
 [HIT Configuration]
 title = Memory test
 description = Recall a list of words.
 amt_keywords = Memory, wordlist
-base_payment = 1
+base_payment = 1.00
 lifetime = 24
 duration = 0.25
 us_only = true
@@ -36,4 +36,3 @@ logfile = -
 
 [Shell Parameters]
 launch_in_sandbox_mode = false
-

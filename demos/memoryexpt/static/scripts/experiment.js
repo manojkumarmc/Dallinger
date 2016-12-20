@@ -266,6 +266,20 @@ getQuorum = function () {
     });
 };
 
+// sends participants to the end if there are any infos
+killIfAnyInfos = function () {
+    reqwest({
+      url: "/info",
+      method: "get",
+      success: function (resp) {
+        if (anyInfos = resp.info.count > 0) {
+          allow_exit();
+          go_to_page("questionnaire");
+        }
+      }
+    });
+};
+
 waitForQuorum = function () {
     reqwest({
         url: "/summary",
