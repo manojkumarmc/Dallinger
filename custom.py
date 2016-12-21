@@ -677,16 +677,18 @@ def connect(node_id, other_node_id):
                             data=[v.__json__() for v in vectors],
                             request_type="vector post")
 
-@custom_code.route("/info/", methods=["GET"])
+
+@custom_code.route("/info", methods=["GET"])
 def get_info_all():
     """Get all the infos"""
-
     exp = experiment(session)
+
     num_infos = models.Info.query.count()
 
     # return the data
-    return success_response(field="info",
-        data={"count":num_infos},
+    return success_response(
+        field="info",
+        data={"count": num_infos},
         request_type="info get")
 
 
