@@ -272,7 +272,8 @@ killIfAnyInfos = function () {
       url: "/info",
       method: "get",
       success: function (resp) {
-        if (anyInfos = resp.info.count > 0) {
+        console.log(resp);
+        if (resp.info.count > 0) {
           allow_exit();
           go_to_page("questionnaire");
         }
