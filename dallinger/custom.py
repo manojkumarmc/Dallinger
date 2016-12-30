@@ -1199,6 +1199,7 @@ def worker_function(event_type, assignment_id, participant_id):
         if participant.status == "working":
             participant.end_time = datetime.now()
             participant.status = "submitted"
+            session.commit()
 
             # Approve the assignment.
             exp.recruiter().approve_hit(assignment_id)
@@ -1211,6 +1212,7 @@ def worker_function(event_type, assignment_id, participant_id):
             # If it isn't, fail their nodes and recruit a replacement.
             if not worked:
                 participant.status = "bad_data"
+                session.commit()
                 exp.data_check_failed(participant=participant)
                 exp.recruiter().recruit_participants(n=1)
             else:
@@ -1234,6 +1236,7 @@ def worker_function(event_type, assignment_id, participant_id):
                 if not attended:
                     exp.log("Attention check failed.", key)
                     participant.status = "did_not_attend"
+                    session.commit()
                     exp.attention_check_failed(participant=participant)
                     exp.recruiter().recruit_participants(n=1)
                 else:
